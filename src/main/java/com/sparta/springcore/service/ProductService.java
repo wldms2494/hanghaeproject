@@ -1,5 +1,4 @@
 package com.sparta.springcore.service;
-
 import com.sparta.springcore.dto.ProductMypriceRequestDto;
 import com.sparta.springcore.dto.ProductRequestDto;
 import com.sparta.springcore.model.Product;
@@ -12,7 +11,6 @@ import java.util.List;
 @Service
 public class ProductService {
 
-
     private final ProductRepository productRepository;
 
     @Autowired
@@ -20,11 +18,9 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-
-
-    public Product createProduct(ProductRequestDto requestDto){
+    public Product createProduct(ProductRequestDto requestDto, Long userId ) {
 // 요청받은 DTO 로 DB에 저장할 객체 만들기
-        Product product = new Product(requestDto);
+        Product product = new Product(requestDto, userId);
 
         productRepository.save(product);
 
@@ -33,19 +29,22 @@ public class ProductService {
 
     public Product updateProduct(Long id, ProductMypriceRequestDto requestDto) {
         Product product = productRepository.findById(id)
-        .orElseThrow(() -> new NullPointerException("해당 아이디가 존재하지 않습니다."));
-
+                .orElseThrow(() -> new NullPointerException("해당 아이디가 존재하지 않습니다."));
 
         int myprice = requestDto.getMyprice();
         product.setMyprice(myprice);
-        productRepository.save(product);//프로덕트에 마이프라이스만 바껴서 저장될것임
+        productRepository.save(product);
 
         return product;
     }
 
-    public List<Product> getProducts() {
-        List<Product> products = productRepository.findAll();
+    // 회원 ID 로 등록된 상품 조회
+    public List<Product> getProducts(Long userId) {
+        return productRepository.findAllByUserId(userId);
+    }
 
-        return products;
+    public List<Product> getAllProducts() {
+
+        return productRepository.findAll(); //findall은 Repository에 따로 만들 필요 없음
     }
 }
