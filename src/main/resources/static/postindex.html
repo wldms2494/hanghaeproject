@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline Service</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../js/basic.js"></script>
+
+
+</head>
+<body>
+<div class = "post-wrap">
+    <div id="board_write">
+        <h1><a href = "../../templates/index.html">글 작성 하기</a></h1>
+        <h4> how was your day?</h4>
+        <div id="write_area">
+
+            <div id="in_title">
+                <textarea name="title" id="utitle"  placeholder="title" required></textarea>
+            </div>
+            <div class="wi_line"></div>
+
+            <div class="wi_line"></div>
+
+            <div id = "in_username">
+                <textarea name="username" id="uusername" placeholder="name" required></textarea>
+
+            </div>
+            <div id="in_content">
+                <textarea name="content" id="ucontent" placeholder="" required></textarea>
+            </div>
+
+
+            <div class="bt_se">
+                <button type="submit" onclick="writePost()">글 작성</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+
